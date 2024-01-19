@@ -46,5 +46,4 @@ public class BudgetItem {
         System.out.println("Category : " + category);
 
     }
-
 }
