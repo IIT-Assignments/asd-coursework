@@ -2,7 +2,7 @@ package Entity;
 
 public class BudgetItem {
     
-    private int itemID;
+    private int id;
     private double amount;
     Category category;
 
@@ -10,18 +10,18 @@ public class BudgetItem {
 
     }
     
-    public BudgetItem(int itemID, double amount, Category category) {
-        this.itemID = itemID;
+    public BudgetItem(int id, double amount, Category category) {
+        this.id = id;
         this.amount = amount;
         this.category = category;
     }
 
-    public int getItemID() {
-        return itemID;
+    public int getId() {
+        return id;
     }
 
-    public void setItemID(int itemID) {
-        this.itemID = itemID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -41,7 +41,7 @@ public class BudgetItem {
     }
 
     public void getBudgetItem(){
-        System.out.println("Item ID : " + itemID);
+        System.out.println("Item ID : " + id);
         System.out.println("Item Name : " + amount);
         System.out.println("Category : " + category);
 
