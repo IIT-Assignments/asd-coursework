@@ -84,7 +84,7 @@ public class Main {
         // Print the table footer
         System.out.println("+-------------------------+---------------------------+");
         if(isRedirect == true){
-            displayMainMenu();
+            displayCategoryMenu();
         }
     }
 
