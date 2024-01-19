@@ -208,9 +208,11 @@ public class Main {
         System.out.println("|  ID                     |       Category                |       Amount                |");
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
 
-        // Print each row of the table
-        for (BudgetItem budgetItem : budget.getBudgetItems()) {
-            System.out.printf("| %-23d | %-29s | %-27s |\n", budgetItem.getId(), budgetItem.getCategory().getName(), budgetItem.getAmount());
+        if(budget != null){
+            // Print each row of the table
+            for (BudgetItem budgetItem : budget.getBudgetItems()) {
+                System.out.printf("| %-23d | %-29s | %-27s |\n", budgetItem.getId(), budgetItem.getCategory().getName(), budgetItem.getAmount());
+            }
         }
 
         // Print the table footer
