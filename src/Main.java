@@ -17,7 +17,9 @@ public class Main {
 
     public static void displayMainMenu(){
         // Prompt the user to enter the option
-        System.out.println("\nWelcome to Expense Tracker");
+        System.out.println("\n###################################");
+        System.out.println("#    Welcome to Expense Tracker   #");
+        System.out.println("###################################\n");
         System.out.println("1. Category");
         System.out.println("2. Budget");
         System.out.println("3. Transactions");
@@ -56,7 +58,7 @@ public class Main {
 
         switch (option) {
             case 1:
-                categoryCreate();
+                createCategory();
                 break;
             case 2:
                 categoryDisplay(true);
@@ -88,7 +90,7 @@ public class Main {
         }
     }
 
-    private static void categoryCreate() {
+    private static void createCategory() {
         // Prompt the user to enter the Category Name
         System.out.print("Enter the Category Name: ");
 
@@ -108,9 +110,7 @@ public class Main {
         categories.add(category);
 
         // Print the Category object (assuming Category has a proper toString method)
-        for( Category categoryItem : categories){
-            System.out.println(categoryItem.toString());
-        }
+        System.out.println(name + " added to category list");
 
         displayCategoryMenu();
     }
@@ -202,19 +202,24 @@ public class Main {
         }
 
         Budget budget = getBudgetByName(budgetName.trim());
-
+        System.out.println("\nBudget for " + budgetName + "\n");
         // Print the table header
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
         System.out.println("|  ID                     |       Category                |       Amount                |");
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
 
+        double total = 0.00;
+
         if(budget != null){
             // Print each row of the table
             for (BudgetItem budgetItem : budget.getBudgetItems()) {
+                total += budgetItem.getAmount();
                 System.out.printf("| %-23d | %-29s | %-27s |\n", budgetItem.getId(), budgetItem.getCategory().getName(), budgetItem.getAmount());
             }
         }
 
+        System.out.println("+-------------------------+-------------------------------+-----------------------------+");
+        System.out.printf("| %-23s | %-29s | %-27s |\n","","Total",total);
         // Print the table footer
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
 
@@ -243,8 +248,8 @@ public class Main {
         // Create a UUID
         UUID uuid = UUID.randomUUID();
 
-        // Convert UUID to int using hashCode
-        int uuidAsInt = uuid.hashCode();
+        // Convert UUID to int using hashCode and make it positive
+        int uuidAsInt = Math.abs(uuid.hashCode());
 
         return uuidAsInt;
     }
