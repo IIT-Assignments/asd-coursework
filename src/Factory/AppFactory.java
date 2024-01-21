@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class AppFactory {
     CategoryController categoryController;
     TransactionController transactionController;
+
     BudgetController budgetController;
     public IAppFactory getApp(AppType appType) {
         if (appType == AppType.CATEGORY) {
@@ -48,7 +49,6 @@ public class AppFactory {
                     return this.budgetController;
                 }
             }
-
         } else if (appType == AppType.TRANSACTION) {
             if (transactionController != null) {
                 return this.transactionController;
