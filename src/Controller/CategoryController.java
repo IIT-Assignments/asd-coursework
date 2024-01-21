@@ -50,7 +50,7 @@ public class CategoryController implements IAppFactory {
 
     @Override
     public void getAll() {
-
+        categoryView.displayCategories(categories);
     }
 
     @Override

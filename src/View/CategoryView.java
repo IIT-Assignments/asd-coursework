@@ -2,6 +2,7 @@ package View;
 
 import Model.Category;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CategoryView {
@@ -27,5 +28,20 @@ public class CategoryView {
 
     public void displayCategoryById(int id,String name) {
         System.out.print("id : " + id + "name : " + name);
+    }
+
+    public void displayCategories(ArrayList<Category> categories) {
+        // Print the table header
+        System.out.println("+-------------------------+---------------------------+");
+        System.out.println("|  ID                     |       Name                |");
+        System.out.println("+-------------------------+---------------------------+");
+
+        // Print each row of the table
+        for (Category category : categories) {
+            System.out.printf("| %-23d | %-25s |\n", category.getId(), category.getName());
+        }
+
+        // Print the table footer
+        System.out.println("+-------------------------+---------------------------+");
     }
 }
