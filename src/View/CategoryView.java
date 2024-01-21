@@ -26,10 +26,6 @@ public class CategoryView {
         return category;
     }
 
-    public void displayCategoryById(int id,String name) {
-        System.out.print("id : " + id + "name : " + name);
-    }
-
     public void displayCategories(ArrayList<Category> categories) {
         // Print the table header
         System.out.println("+-------------------------+---------------------------+");

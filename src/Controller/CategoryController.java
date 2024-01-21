@@ -39,13 +39,13 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
-    public void getById(int id) {
+    public Category getById(int id) {
         for(Category category: categories){
             if(category.getId() == id){
-                categoryView.displayCategoryById(category.getId(),category.getName());
+                return category;
             }
         }
-
+        return null;
     }
 
     @Override
