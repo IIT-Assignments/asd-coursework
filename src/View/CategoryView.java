@@ -40,4 +40,16 @@ public class CategoryView {
         // Print the table footer
         System.out.println("+-------------------------+---------------------------+");
     }
+
+    public int deleteCategory() {
+        System.out.print("\nEnter the Category Id for delete: ");
+
+        int id = 0;
+        if (scanner.hasNextLine()) {
+            id = scanner.nextInt();
+            scanner.nextLine();
+        }
+
+        return id;
+    }
 }
