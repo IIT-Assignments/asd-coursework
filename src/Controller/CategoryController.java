@@ -46,7 +46,7 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
-    public void update() {
+    public void update(int id) {
 
     }
 
@@ -61,7 +61,7 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }
