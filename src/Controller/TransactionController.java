@@ -1,17 +1,15 @@
 package Controller;
 
 import Factory.IAppFactory;
-import Model.Category;
 import Model.Transaction;
 import View.TransactionView;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class TransactionController implements IAppFactory {
-    private ArrayList<Transaction> transactions;
-    private TransactionView transactionView;
+    private final ArrayList<Transaction> transactions;
+    private final TransactionView transactionView;
 
     public TransactionController(ArrayList<Transaction> transactions, TransactionView transactionView) {
         this.transactions = transactions;
@@ -20,9 +18,7 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public int generateId() {
-        // Create a UUID
         UUID uuid = UUID.randomUUID();
-        // Convert UUID to int using hashCode and make it positive
         return Math.abs(uuid.hashCode());
     }
 
@@ -31,29 +27,35 @@ public class TransactionController implements IAppFactory {
         Transaction transaction = this.transactionView.renderAndCreateTransaction();
         transaction.setId(this.generateId());
         transactions.add(transaction);
-
-        for (Transaction transaction1: transactions) {
-            System.out.println(transaction1.toString());
-        }
     }
 
     @Override
     public void update(int id) {
+        Transaction transaction = this.transactionView.renderAndUpdateTransaction();
 
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction1 = transactions.get(i);
+
+            if (transaction1.getId() == id) {
+                transactions.set(i, transaction);
+                break;
+            }
+        }
     }
 
     @Override
-    public Object getById(int id) {
-        return null;
+    public Transaction getById(int id) {
+        return transactions.get(id);
     }
 
     @Override
-    public Object[] getAll() {
-        return new Object[0];
+    public void getAll() {
+        transactionView.renderAllTransactions(transactions);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete() {
+        int transactionId = this.transactionView.renderAndDeleteTransaction();
+        transactions.remove(transactionId);
     }
 }
