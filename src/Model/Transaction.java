@@ -1,5 +1,4 @@
-package Entity;
-
+package Model;
 
 public class Transaction {
     private int id;

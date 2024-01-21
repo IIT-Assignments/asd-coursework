@@ -1,4 +1,6 @@
-package Entity;
+package Model;
+
+import Entity.BudgetItem;
 
 import java.util.List;
 
