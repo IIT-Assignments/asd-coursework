@@ -1,7 +1,7 @@
 package Entity;
 
 
-public class Transaction {
+public class Transaction implements IRender {
     private int id;
     private Double amount;
     private String note;
@@ -9,8 +9,9 @@ public class Transaction {
     private Category category;
     private String type;
 
-    public Transaction() {
-    }
+    private MainMenu mainMenu;
+
+    public Transaction() {}
 
     public Transaction(int id, Double amount, String note, Boolean isRecurring, Category category, String type ){
         this.id = id;
@@ -21,51 +22,40 @@ public class Transaction {
         this.type = type;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public void renderMenu() {
+        System.out.println("\n=== Transaction Menu ===");
+        System.out.println("1. Income Transaction");
+        System.out.println("2. Expense Transaction");
+        System.out.println("3. Main Menu");
+        System.out.print("Enter your choice: ");
+
+        int option = this.mainMenu.getScanner().nextInt();
+        this.mainMenu.getScanner().nextLine();
+
+        switch (option) {
+            case 1:
+                this.renderCreateTransactionMenu(TransactionType.INCOME);
+                break;
+            case 2:
+                this.renderCreateTransactionMenu(TransactionType.EXPENSE);
+                break;
+            case 3:
+                this.mainMenu.renderMainMeu();
+                break;
+            default:
+                break;
+        }
     }
 
-    public Double getAmount() {
-        return amount;
+    private void renderCreateTransactionMenu(TransactionType transactionType) {
+
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public Boolean getRecurring() {
-        return isRecurring;
-    }
-
-    public void setRecurring(Boolean recurring) {
-        isRecurring = recurring;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+//    private void renderAllTransactionsTable
 }
