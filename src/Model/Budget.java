@@ -10,8 +10,7 @@ public class Budget {
     public Budget() {
     }
 
-    public Budget(int id, String name, List<BudgetItem> budgetItems) {
-        this.id = id;
+    public Budget(String name, List<BudgetItem> budgetItems) {
         this.name = name;
         this.budgetItems = budgetItems;
     }
@@ -39,4 +38,14 @@ public class Budget {
     public void setBudgetItems(List<BudgetItem> budgetItems) {
         this.budgetItems = budgetItems;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", name=" + name +
+                ", budget items='" + budgetItems +
+                '}';
+    }
+
 }

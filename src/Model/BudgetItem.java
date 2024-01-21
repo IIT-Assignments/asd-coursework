@@ -10,8 +10,7 @@ public class BudgetItem {
 
     }
 
-    public BudgetItem(int id, double amount, Category category) {
-        this.id = id;
+    public BudgetItem(double amount, Category category) {
         this.amount = amount;
         this.category = category;
     }
@@ -40,10 +39,12 @@ public class BudgetItem {
         this.category = category;
     }
 
-    public void getBudgetItem(){
-        System.out.println("Item ID : " + id);
-        System.out.println("Item Name : " + amount);
-        System.out.println("Category : " + category);
-
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", budget category='" + category +
+                '}';
     }
 }
