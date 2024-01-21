@@ -1,7 +1,7 @@
-package Entity;
+package Model;
 
 public class BudgetItem {
-    
+
     private int id;
     private double amount;
     Category category;
@@ -9,7 +9,7 @@ public class BudgetItem {
     public BudgetItem(){
 
     }
-    
+
     public BudgetItem(int id, double amount, Category category) {
         this.id = id;
         this.amount = amount;
