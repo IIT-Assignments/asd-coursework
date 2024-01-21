@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class AppFactory {
     CategoryController categoryController;
     TransactionController transactionController;
-
     BudgetController budgetController;
+
     public IAppFactory getApp(AppType appType) {
         if (appType == AppType.CATEGORY) {
             if (categoryController != null) {
