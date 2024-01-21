@@ -11,14 +11,14 @@ public class BudgetController implements IAppFactory {
     public int generateId() {
         return 0;
     }
-    
+
     @Override
     public void create() {
 
     }
 
     @Override
-    public void update() {
+    public void update(int id) {
 
     }
 
@@ -33,7 +33,7 @@ public class BudgetController implements IAppFactory {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }

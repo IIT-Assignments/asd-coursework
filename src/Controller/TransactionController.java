@@ -5,9 +5,11 @@ import Model.Transaction;
 import View.TransactionView;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class TransactionController implements IAppFactory {
+    private Scanner scanner = new Scanner(System.in);
     private ArrayList<Transaction> transactions = new ArrayList<>();
     private TransactionView transactionView = new TransactionView();
 
@@ -26,11 +28,14 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public void create() {
+        Double amount;
+        String note;
+        System.out.println("Enter transaction amount: ");
 
     }
 
     @Override
-    public void update() {
+    public void update(int id) {
 
     }
 
@@ -45,7 +50,7 @@ public class TransactionController implements IAppFactory {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }
