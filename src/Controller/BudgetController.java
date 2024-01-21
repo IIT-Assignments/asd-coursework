@@ -2,10 +2,7 @@ package Controller;
 
 import Factory.IAppFactory;
 import Model.Budget;
-import Model.Transaction;
 import View.BudgetView;
-import View.CategoryView;
-import View.TransactionView;
 
 import java.util.ArrayList;
 import java.util.UUID;
