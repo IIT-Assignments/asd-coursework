@@ -4,6 +4,7 @@ import Mediator.IControllerMediator;
 import Model.Budget;
 import Model.BudgetItem;
 import Model.Category;
+import Model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

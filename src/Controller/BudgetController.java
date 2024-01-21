@@ -2,7 +2,10 @@ package Controller;
 
 import Factory.IAppFactory;
 import Model.Budget;
+import Model.Transaction;
 import View.BudgetView;
+import View.CategoryView;
+import View.TransactionView;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -39,12 +42,12 @@ public class BudgetController implements IAppFactory {
     }
 
     @Override
-    public void getAll() {
-
+    public Object[] getAll() {
+        return new Object[0];
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
 
     }
 }
