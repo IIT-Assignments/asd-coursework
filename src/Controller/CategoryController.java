@@ -55,6 +55,12 @@ public class CategoryController implements IAppFactory {
 
     @Override
     public void delete() {
+        int id = categoryView.deleteCategory();
 
+        for(Category category: categories){
+            if(category.getId() == id){
+                categories.remove(category);
+            }
+        }
     }
 }
