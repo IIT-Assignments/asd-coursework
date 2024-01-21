@@ -28,12 +28,12 @@ public class BudgetController implements IAppFactory {
     }
 
     @Override
-    public Object[] getAll() {
-        return new Object[0];
+    public void getAll() {
+
     }
 
     @Override
-    public void delete(int id) {
+    public void delete() {
 
     }
 }

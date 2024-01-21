@@ -10,5 +10,7 @@ public class Main {
         IAppFactory transactionController1 = appFactory.getApp(AppType.TRANSACTION);
         transactionController.create();
         transactionController1.create();
+        transactionController1.create();
+        transactionController1.getAll();
     }
 }
