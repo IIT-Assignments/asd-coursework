@@ -6,4 +6,6 @@ public interface IAppFactory {
     Object getById(int id);
     Object[] getAll();
     void delete();
+
+    int generateId();
 }

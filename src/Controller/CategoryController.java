@@ -16,6 +16,11 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
+    public int generateId() {
+        return 0;
+    }
+
+    @Override
     public void create() {
 
     }

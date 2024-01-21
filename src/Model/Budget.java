@@ -1,7 +1,5 @@
 package Model;
 
-import Entity.BudgetItem;
-
 import java.util.List;
 
 public class Budget {

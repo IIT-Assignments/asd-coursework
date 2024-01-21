@@ -6,6 +6,12 @@ import java.util.ArrayList;
 
 public class BudgetController implements IAppFactory {
     private ArrayList<Budget> budgets = new ArrayList<>();
+
+    @Override
+    public int generateId() {
+        return 0;
+    }
+    
     @Override
     public void create() {
 
