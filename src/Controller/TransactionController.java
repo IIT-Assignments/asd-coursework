@@ -1,6 +1,7 @@
 package Controller;
 
 import Factory.IAppFactory;
+import Model.Category;
 import Model.Transaction;
 import View.TransactionView;
 
@@ -9,9 +10,8 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class TransactionController implements IAppFactory {
-    private Scanner scanner = new Scanner(System.in);
-    private ArrayList<Transaction> transactions = new ArrayList<>();
-    private TransactionView transactionView = new TransactionView();
+    private ArrayList<Transaction> transactions;
+    private TransactionView transactionView;
 
     public TransactionController(ArrayList<Transaction> transactions, TransactionView transactionView) {
         this.transactions = transactions;
@@ -28,10 +28,13 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public void create() {
-        Double amount;
-        String note;
-        System.out.println("Enter transaction amount: ");
+        Transaction transaction = this.transactionView.renderAndCreateTransaction();
+        transaction.setId(this.generateId());
+        transactions.add(transaction);
 
+        for (Transaction transaction1: transactions) {
+            System.out.println(transaction1.toString());
+        }
     }
 
     @Override

@@ -11,8 +11,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int id, Double amount, String note, Boolean isRecurring, Category category, String type ){
-        this.id = id;
+    public Transaction(Double amount, String note, Boolean isRecurring, Category category, String type ){
         this.amount = amount;
         this.note = note;
         this.isRecurring = isRecurring;
@@ -66,5 +65,17 @@ public class Transaction {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", note='" + note + '\'' +
+                ", isRecurring=" + isRecurring +
+                ", category=" + (category != null ? category.toString() : "null") +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
