@@ -32,14 +32,7 @@ public class AppFactory {
                     TransactionView transactionView = new TransactionView(mediator);
                     this.transactionController = new TransactionController(transactions, transactionView);
                 } else {
-                    ArrayList<Category> categories = new ArrayList<>();
-                    CategoryView categoryView = new CategoryView();
-                    this.categoryController = new CategoryController(categories, categoryView);
-
-                    ControllerMediator mediator = new ControllerMediator(this.categoryController);
-                    ArrayList<Transaction> transactions = new ArrayList<>();
-                    TransactionView transactionView = new TransactionView(mediator);
-                    this.transactionController = new TransactionController(transactions, transactionView);
+                    return null;
                 }
             }
             return this.transactionController;
