@@ -52,8 +52,6 @@ public class AppFactory {
         } else if (appType == AppType.TRANSACTION) {
             if (transactionController != null) {
                 return this.transactionController;
-            if (budgetController != null) {
-                return this.budgetController;
             } else {
                 if (categoryController != null) {
                     ControllerMediator mediator = new ControllerMediator(this.categoryController);
@@ -76,7 +74,5 @@ public class AppFactory {
         } else {
             return null;
         }
-
-        return null;
     }
 }
