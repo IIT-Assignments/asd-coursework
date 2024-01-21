@@ -31,7 +31,7 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
-    public Object getById(int id) {
+    public Category getById(int id) {
         return null;
     }
 
