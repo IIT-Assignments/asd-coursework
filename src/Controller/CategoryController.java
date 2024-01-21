@@ -6,6 +6,7 @@ import View.CategoryView;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class CategoryController implements IAppFactory {
     private ArrayList<Category> categories;
@@ -18,31 +19,18 @@ public class CategoryController implements IAppFactory {
 
     @Override
     public int generateId() {
-        return 0;
+        // Create a UUID
+        UUID uuid = UUID.randomUUID();
+        // Convert UUID to int using hashCode and make it positive
+        return Math.abs(uuid.hashCode());
     }
+
 
     @Override
     public void create() {
-        // Prompt the user to enter the Category Name
-        System.out.print("\nEnter the Category Name: ");
-
-        String name = "";
-        // Read the Category Name from the user
-        if (scanner.hasNextLine()) {
-            // Read the Category Name from the user
-            name = scanner.nextLine();
-        } else {
-            System.out.println("No input found. Exiting.");
-            return;
-        }
-
-        // Create a Category object with the provided name
-        Category category = new Category(generateId(), name);
-
-        categories.add(category);
-
-        // Print the Category object (assuming Category has a proper toString method)
-        System.out.println(name + " added to category list");
+       Category category =  categoryView.createCategory();
+       category.setId(generateId());
+       categories.add(category);
     }
 
     @Override
@@ -51,8 +39,13 @@ public class CategoryController implements IAppFactory {
     }
 
     @Override
-    public Category getById(int id) {
-        return null;
+    public void getById(int id) {
+        for(Category category: categories){
+            if(category.getId() == id){
+                categoryView.displayCategoryById(category.getId(),category.getName());
+            }
+        }
+
     }
 
     @Override
