@@ -37,6 +37,8 @@ public class Main {
             case 2:
                 displayBudgetMenu();
                 break;
+            case 3:
+                displayTransactionMenu();
             default:
                 break;
         }
@@ -224,6 +226,38 @@ public class Main {
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
 
         displayBudgetMenu();
+    }
+
+    private static void displayTransactionMenu(){
+        System.out.println("\n=== Transaction Menu ===");
+        System.out.println("1. Income Transaction");
+        System.out.println("2. Expense Transaction");
+        System.out.println("3. Main Menu");
+        System.out.print("Enter your choice: ");
+        int option = scanner.nextInt();
+        // Consume the newline character
+        scanner.nextLine();
+
+        switch (option) {
+            case 1:
+                createTransaction(true);
+                break;
+            case 2:
+                createTransaction(false);
+                break;
+            case 3:
+                displayMainMenu();
+                break;
+            default:
+                break;
+        }
+
+    }
+    private static void createTransaction(boolean isIncome){
+
+    }
+    private static void viewTransaction(boolean isIncome){
+
     }
 
     private static Category getCategoryByName(String filterName){
