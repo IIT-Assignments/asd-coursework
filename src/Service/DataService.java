@@ -6,6 +6,7 @@ import Model.Transaction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,26 +17,16 @@ import java.util.logging.Logger;
 
 public class DataService {
     private static final Logger LOGGER = Logger.getLogger(DataService.class.getName());
-    private static DataService dataService;
-    private static ArrayList<Category> categories;
-    private static ArrayList<Transaction> transactions;
-    private static ArrayList<Budget> budgets;
+    private static final DataService dataService = new DataService();
+    private ArrayList<Category> categories = new ArrayList<>();
+    private ArrayList<Transaction> transactions = new ArrayList<>();
+    private ArrayList<Budget> budgets = new ArrayList<>();
 
-    private DataService(ArrayList<Category> categories, ArrayList<Transaction> transactions, ArrayList<Budget> budgets) {
-        DataService.categories = categories;
-        DataService.transactions = transactions;
-        DataService.budgets = budgets;
+    private DataService() {
+        this.loadDataToArrayLists();
     }
 
     public static DataService getInstance() {
-        if (dataService == null) {
-            categories = new ArrayList<>();
-            transactions = new ArrayList<>();
-            budgets = new ArrayList<>();
-
-            dataService = new DataService(categories, transactions, budgets);
-        }
-
         return dataService;
     }
 
@@ -51,6 +42,7 @@ public class DataService {
 
     public void setBudget(Budget budget) {
         budgets.add(budget);
+        this.saveBudgetsToFile();
     }
 
     public Category getCategoryById(int id) {
@@ -87,6 +79,7 @@ public class DataService {
 
             if (category1.getId() == category.getId()) {
                 categories.set(i, category);
+                this.saveCategoriesToFile();
                 break;
             }
         }
@@ -98,6 +91,7 @@ public class DataService {
 
             if (transaction1.getId() == transaction.getId()) {
                 transactions.set(i, transaction);
+                this.saveTransactionsToFile();
                 break;
             }
         }
@@ -109,6 +103,7 @@ public class DataService {
 
             if (budget1.getId() == budget.getId()) {
                 budgets.set(i, budget);
+                this.saveBudgetsToFile();
                 break;
             }
         }
@@ -142,7 +137,9 @@ public class DataService {
         Gson gson = new Gson();
         try {
             FileWriter fileWriter = new FileWriter("categories.json");
+            System.out.println(categories.size());
             gson.toJson(categories, fileWriter);
+            fileWriter.flush();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error occurred while reading the file", e);
         }
@@ -153,21 +150,54 @@ public class DataService {
         try {
             FileWriter fileWriter = new FileWriter("transactions.json");
             gson.toJson(transactions, fileWriter);
+            fileWriter.flush();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error occurred while reading the file", e);
+        }
+    }
+
+    private void saveBudgetsToFile() {
+        Gson gson = new Gson();
+        try {
+            FileWriter fileWriter = new FileWriter("budgets.json");
+            gson.toJson(budgets, fileWriter);
+            fileWriter.flush();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error occurred while reading the file", e);
         }
     }
 
     private void loadDataToArrayLists() {
+        System.out.println("called");
         Gson gson = new Gson();
         try {
-            FileReader categoryFileReader = new FileReader("categories.json");
-            Type categoryList = new TypeToken<ArrayList<Category>>(){}.getType();
-            categories = gson.fromJson(categoryFileReader, categoryList);
+            File categoryFile = new File("categories.json");
+            File transactionFile = new File("transactions.json");
+            File budgetFile = new File("budgets.json");
 
-            FileReader transactionFileReader = new FileReader("transactions.json");
-            Type transactionList = new TypeToken<ArrayList<Transaction>>(){}.getType();
-            transactions = gson.fromJson(transactionFileReader, transactionList);
+            if (categoryFile.exists()) {
+                FileReader categoryFileReader = new FileReader(categoryFile);
+                Type categoryList = new TypeToken<ArrayList<Category>>(){}.getType();
+                categories = gson.fromJson(categoryFileReader, categoryList);
+            } else {
+                categories = new ArrayList<>();
+            }
+
+            if (transactionFile.exists()) {
+                FileReader transactionFileReader = new FileReader(transactionFile);
+                Type transactionList = new TypeToken<ArrayList<Transaction>>(){}.getType();
+                transactions = gson.fromJson(transactionFileReader, transactionList);
+            } else {
+                transactions = new ArrayList<>();
+            }
+
+            if (budgetFile.exists()) {
+                FileReader budgetFileReader = new FileReader(budgetFile);
+                Type budgetList = new TypeToken<ArrayList<Transaction>>(){}.getType();
+                budgets = gson.fromJson(budgetFileReader, budgetList);
+            } else {
+                budgets = new ArrayList<>();
+            }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error occurred while reading the file", e);
         }

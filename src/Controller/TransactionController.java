@@ -32,7 +32,7 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public void update(int id) {
-        Transaction transaction = this.transactionView.renderAndUpdateTransaction(this.dataService.getCategories());
+        Transaction transaction = this.transactionView.renderAndUpdateTransaction(this.dataService);
         this.dataService.updateTransactionById(transaction);
     }
 

@@ -2,6 +2,7 @@ package View;
 
 import Model.Category;
 import Model.Transaction;
+import Service.DataService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,12 +11,12 @@ public class TransactionView {
     public  TransactionView() {}
 
     private final Scanner scanner = new Scanner(System.in);
-    public Transaction renderAndCreateTransaction(ArrayList<Category> categories) {
-        return renderTransactionView(categories);
+    public Transaction renderAndCreateTransaction(DataService dataService) {
+        return renderTransactionView(dataService);
     }
 
-    public Transaction renderAndUpdateTransaction(ArrayList<Category> categories) {
-        return renderTransactionView(categories);
+    public Transaction renderAndUpdateTransaction(DataService dataService) {
+        return renderTransactionView(dataService);
     }
 
     public void renderAllTransactions(ArrayList<Transaction> transactions) {
@@ -24,7 +25,7 @@ public class TransactionView {
         System.out.println("+-------------------------+---------------------------+-----------------------------+-------------------------+-------------------------+------------------------------*");
 
         for (Transaction transaction : transactions) {
-            System.out.printf("| %-23d | %-25s | %-25s | %-25s | %-25s | %-25s\n",
+            System.out.printf("| %-23d | %-25s | %-27s | %-23s | %-23s | %-28s |\n",
                     transaction.getId(),
                     transaction.getAmount(),
                     transaction.getCategory().getName(),
@@ -46,7 +47,7 @@ public class TransactionView {
         return transactionId;
     }
 
-    private Transaction renderTransactionView(ArrayList<Category> categories) {
+    private Transaction renderTransactionView(DataService dataService) {
         double amount;
         String note;
         String recurringStatus;

@@ -7,7 +7,7 @@ public class Main {
         AppFactory appFactory = new AppFactory();
         IAppFactory transactionController = appFactory.getApp(AppType.TRANSACTION);
         IAppFactory transactionController1 = appFactory.getApp(AppType.CATEGORY);
-        transactionController1.create();
-        transactionController1.getAll();
+//        transactionController.create();
+        transactionController.getAll();
     }
 }
