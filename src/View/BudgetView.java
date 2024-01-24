@@ -1,6 +1,5 @@
 package View;
 
-import Mediator.IControllerMediator;
 import Model.Budget;
 import Model.BudgetItem;
 import Model.Category;
