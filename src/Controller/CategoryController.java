@@ -2,6 +2,8 @@ package Controller;
 
 import Factory.IAppFactory;
 import Model.Category;
+import Model.Transaction;
+import Service.DataService;
 import View.CategoryView;
 
 import java.util.ArrayList;
@@ -9,11 +11,11 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class CategoryController implements IAppFactory {
-    private ArrayList<Category> categories;
+    private DataService dataService;
     private CategoryView categoryView;
     static Scanner scanner;
-    public CategoryController(ArrayList<Category> categories, CategoryView categoryView) {
-        this.categories = categories;
+    public CategoryController(DataService dataService, CategoryView categoryView) {
+        this.dataService = dataService;
         this.categoryView = categoryView;
     }
 
@@ -29,8 +31,7 @@ public class CategoryController implements IAppFactory {
     @Override
     public void create() {
        Category category =  categoryView.createCategory();
-       category.setId(generateId());
-       categories.add(category);
+       this.dataService.setCategory(category);
     }
 
     @Override
@@ -40,27 +41,18 @@ public class CategoryController implements IAppFactory {
 
     @Override
     public Category getById(int id) {
-        for(Category category: categories){
-            if(category.getId() == id){
-                return category;
-            }
-        }
-        return null;
+        return this.dataService.getCategoryById(id);
     }
 
     @Override
     public void getAll() {
-        categoryView.displayCategories(categories);
+        categoryView.displayCategories(this.dataService.getCategories());
     }
 
     @Override
     public void delete() {
         int id = categoryView.deleteCategory();
 
-        for(Category category: categories){
-            if(category.getId() == id){
-                categories.remove(category);
-            }
-        }
+        this.dataService.deleteCategory(id);
     }
 }

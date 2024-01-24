@@ -12,13 +12,11 @@ import java.util.Scanner;
 
 public class BudgetView {
 
-    private final IControllerMediator mediator;
 
-    public  BudgetView(IControllerMediator mediator) {
-        this.mediator = mediator;
-    }
+    public  BudgetView() {}
     private final Scanner scanner = new Scanner(System.in);
-    public Budget renderAndCreateBudget() {
+    public Budget renderAndCreateBudget(ArrayList<Category> categories) {
+        int id;
         String name;
         List<BudgetItem> budgetItems = new ArrayList<>();
         double amount;
@@ -38,7 +36,7 @@ public class BudgetView {
             amount = scanner.nextDouble();
             scanner.nextLine();
 
-            Category category = this.mediator.getCategoryById(categoryId);
+            Category category = categories.get(categoryId);
             BudgetItem budgetItem = new BudgetItem(amount,category);
             budgetItems.add(budgetItem);
 

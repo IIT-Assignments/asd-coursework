@@ -2,17 +2,18 @@ package Controller;
 
 import Factory.IAppFactory;
 import Model.Transaction;
+import Service.DataService;
 import View.TransactionView;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class TransactionController implements IAppFactory {
-    private final ArrayList<Transaction> transactions;
+    private final DataService dataService;
     private final TransactionView transactionView;
 
-    public TransactionController(ArrayList<Transaction> transactions, TransactionView transactionView) {
-        this.transactions = transactions;
+    public TransactionController(DataService dataService, TransactionView transactionView) {
+        this.dataService = dataService;
         this.transactionView = transactionView;
     }
 
@@ -24,38 +25,30 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public void create() {
-        Transaction transaction = this.transactionView.renderAndCreateTransaction();
+        Transaction transaction = this.transactionView.renderAndCreateTransaction(this.dataService.getCategories());
         transaction.setId(this.generateId());
-        transactions.add(transaction);
+        this.dataService.setTransaction(transaction);
     }
 
     @Override
     public void update(int id) {
-        Transaction transaction = this.transactionView.renderAndUpdateTransaction();
-
-        for (int i = 0; i < transactions.size(); i++) {
-            Transaction transaction1 = transactions.get(i);
-
-            if (transaction1.getId() == id) {
-                transactions.set(i, transaction);
-                break;
-            }
-        }
+        Transaction transaction = this.transactionView.renderAndUpdateTransaction(this.dataService.getCategories());
+        this.dataService.updateTransactionById(transaction);
     }
 
     @Override
     public Transaction getById(int id) {
-        return transactions.get(id);
+        return this.dataService.getTransactionById(id);
     }
 
     @Override
     public void getAll() {
-        transactionView.renderAllTransactions(transactions);
+        transactionView.renderAllTransactions(this.dataService.getTransactions());
     }
 
     @Override
     public void delete() {
         int transactionId = this.transactionView.renderAndDeleteTransaction();
-        transactions.remove(transactionId);
+        this.dataService.deleteTransaction(transactionId);
     }
 }

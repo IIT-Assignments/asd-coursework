@@ -1,6 +1,5 @@
 package View;
 
-import Mediator.IControllerMediator;
 import Model.Category;
 import Model.Transaction;
 
@@ -8,19 +7,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransactionView {
-    private final IControllerMediator mediator;
-
-    public  TransactionView(IControllerMediator mediator) {
-        this.mediator = mediator;
-    }
+    public  TransactionView() {}
 
     private final Scanner scanner = new Scanner(System.in);
-    public Transaction renderAndCreateTransaction() {
-        return renderTransactionView();
+    public Transaction renderAndCreateTransaction(ArrayList<Category> categories) {
+        return renderTransactionView(categories);
     }
 
-    public Transaction renderAndUpdateTransaction() {
-        return renderTransactionView();
+    public Transaction renderAndUpdateTransaction(ArrayList<Category> categories) {
+        return renderTransactionView(categories);
     }
 
     public void renderAllTransactions(ArrayList<Transaction> transactions) {
@@ -51,7 +46,7 @@ public class TransactionView {
         return transactionId;
     }
 
-    private Transaction renderTransactionView() {
+    private Transaction renderTransactionView(ArrayList<Category> categories) {
         double amount;
         String note;
         String recurringStatus;
@@ -80,7 +75,7 @@ public class TransactionView {
 
             isRecurring = recurringStatus.equalsIgnoreCase("y");
 
-            Category category = this.mediator.getCategoryById(categoryId);
+            Category category = categories.get(categoryId);
             return new Transaction(amount, note, isRecurring, category, type);
         } else {
             return null;

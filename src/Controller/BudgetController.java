@@ -2,7 +2,9 @@ package Controller;
 
 import Factory.IAppFactory;
 import Model.Budget;
+import Model.Category;
 import Model.Transaction;
+import Service.DataService;
 import View.BudgetView;
 import View.CategoryView;
 import View.TransactionView;
@@ -11,11 +13,11 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class BudgetController implements IAppFactory {
-    private ArrayList<Budget> budgets;
+    private DataService dataService;
     private BudgetView budgetView;
 
-    public BudgetController(ArrayList<Budget> budgets, BudgetView budgetView) {
-        this.budgets = budgets;
+    public BudgetController(DataService dataService, BudgetView budgetView) {
+        this.dataService = dataService;
         this.budgetView = budgetView;
     }
     @Override
@@ -26,14 +28,12 @@ public class BudgetController implements IAppFactory {
 
     @Override
     public void create() {
-        Budget budget = this.budgetView.renderAndCreateBudget();
-        budget.setId(this.generateId());
-        budgets.add(budget);
+        Budget budget = this.budgetView.renderAndCreateBudget(this.dataService.getCategories());
+        this.dataService.setBudget(budget);
     }
 
     @Override
     public void update(int id) {
-
     }
 
     @Override
@@ -47,7 +47,9 @@ public class BudgetController implements IAppFactory {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete() {
+        int id = budgetView.renderAndDeleteBudget();
 
+        this.dataService.deleteBudget(id);
     }
 }
