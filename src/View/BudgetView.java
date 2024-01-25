@@ -29,6 +29,7 @@ public class BudgetView {
         name = scanner.nextLine();
 ;
         String isProceed = "yes";
+        int budgetItemId = 0;
         while (isProceed.equals("yes")){
 
             System.out.println("Enter category id: ");
@@ -41,6 +42,8 @@ public class BudgetView {
 
             Category category = categories.get(categoryId);
             BudgetItem budgetItem = new BudgetItem(amount,category);
+            budgetItemId = budgetItemId + 1;
+            budgetItem.setId(budgetItemId);
             budgetItems.add(budgetItem);
 
 
