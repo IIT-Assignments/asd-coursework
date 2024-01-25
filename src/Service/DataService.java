@@ -137,7 +137,7 @@ public class DataService {
         Gson gson = new Gson();
         try {
             FileWriter fileWriter = new FileWriter("categories.json");
-            System.out.println(categories.size());
+            System.out.println("Category Added");
             gson.toJson(categories, fileWriter);
             fileWriter.flush();
         } catch (IOException e) {
