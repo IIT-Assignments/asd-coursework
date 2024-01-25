@@ -193,7 +193,7 @@ public class DataService {
 
             if (budgetFile.exists()) {
                 FileReader budgetFileReader = new FileReader(budgetFile);
-                Type budgetList = new TypeToken<ArrayList<Transaction>>(){}.getType();
+                Type budgetList = new TypeToken<ArrayList<Budget>>(){}.getType();
                 budgets = gson.fromJson(budgetFileReader, budgetList);
             } else {
                 budgets = new ArrayList<>();
