@@ -110,15 +110,45 @@ public class DataService {
     }
 
     public void deleteCategory(int id) {
-        categories.remove(id);
+        int index = 0;
+        int removeIndex = 0;
+        for(Category category: categories){
+            if(category.getId() == id){
+                removeIndex = index;
+            }
+            index = index + 1;
+        }
+
+        categories.remove(removeIndex);
+
     }
 
     public void deleteTransaction(int id) {
-        transactions.remove(id);
+
+        int index = 0;
+        int removeIndex = 0;
+        for(Transaction transaction: transactions){
+            if(transaction.getId() == id){
+                removeIndex = index;
+            }
+            index = index + 1;
+        }
+
+        transactions.remove(removeIndex);
     }
 
     public void deleteBudget(int id) {
-        budgets.remove(id);
+
+        int index = 0;
+        int removeIndex = 0;
+        for(Budget budget: budgets){
+            if(budget.getId() == id){
+                removeIndex = index;
+            }
+            index = index + 1;
+        }
+
+        budgets.remove(removeIndex);
     }
 
     public ArrayList<Category> getCategories() {
