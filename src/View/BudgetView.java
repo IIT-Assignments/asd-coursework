@@ -21,6 +21,10 @@ public class BudgetView {
         double amount;
         int categoryId;
 
+        System.out.println("Enter a Budget Id: ");
+        id = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.println("Enter a Budget name: ");
         name = scanner.nextLine();
 ;
@@ -45,7 +49,7 @@ public class BudgetView {
         }
         if (!name.isEmpty() && !budgetItems.isEmpty())
         {
-            return new Budget(name, budgetItems);
+            return new Budget(id, name, budgetItems);
         }
         else
         {
@@ -53,5 +57,37 @@ public class BudgetView {
         }
 
 
+    }
+
+    public int renderAndDeleteBudget() {
+        int budgetId;
+        System.out.println("Enter budget id: ");
+        budgetId = scanner.nextInt();
+        scanner.nextLine();
+
+        return budgetId;
+    }
+
+    public void renderBudgetById(Budget budget) {
+        System.out.println("\nBudget for " + budget.getName() + "\n");
+        // Print the table header
+        System.out.println("+-------------------------+-------------------------------+-----------------------------+");
+        System.out.println("|  ID                     |       Category                |       Amount                |");
+        System.out.println("+-------------------------+-------------------------------+-----------------------------+");
+
+        double total = 0.00;
+
+        if(budget != null){
+            // Print each row of the table
+            for (BudgetItem budgetItem : budget.getBudgetItems()) {
+                total += budgetItem.getAmount();
+                System.out.printf("| %-23d | %-29s | %-27s |\n", budgetItem.getId(), budgetItem.getCategory().getName(), budgetItem.getAmount());
+            }
+        }
+
+        System.out.println("+-------------------------+-------------------------------+-----------------------------+");
+        System.out.printf("| %-23s | %-29s | %-27s |\n","","Total",total);
+        // Print the table footer
+        System.out.println("+-------------------------+-------------------------------+-----------------------------+");
     }
 }

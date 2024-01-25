@@ -25,8 +25,8 @@ public class TransactionController implements IAppFactory {
 
     @Override
     public void create() {
-        Transaction transaction = this.transactionView.renderAndCreateTransaction(this.dataService.getCategories());
-        transaction.setId(this.generateId());
+        Transaction transaction = this.transactionView.renderAndCreateTransaction(this.dataService);
+        System.out.println(transaction.toString());
         this.dataService.setTransaction(transaction);
     }
 

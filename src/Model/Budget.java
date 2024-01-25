@@ -10,6 +10,11 @@ public class Budget {
     public Budget() {
     }
 
+    public Budget(int id, String name, List<BudgetItem> budgetItems) {
+        this.id = id;
+        this.name = name;
+        this.budgetItems = budgetItems;
+    }
     public Budget(String name, List<BudgetItem> budgetItems) {
         this.name = name;
         this.budgetItems = budgetItems;

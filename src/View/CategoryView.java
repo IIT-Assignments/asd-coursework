@@ -11,6 +11,10 @@ public class CategoryView {
 
     public Category createCategory() {
         // Prompt the user to enter the Category Name
+        System.out.print("\nEnter the Category Id: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
         System.out.print("\nEnter the Category Name: ");
 
         String name = "";
@@ -22,6 +26,7 @@ public class CategoryView {
 
         // Create a Category object with the provided name
         Category category = new Category();
+        category.setId(id);
         category.setName(name);
         return category;
     }
@@ -51,5 +56,9 @@ public class CategoryView {
         }
 
         return id;
+    }
+
+    public Category renderAndUpdateCategory(){
+        return createCategory();
     }
 }

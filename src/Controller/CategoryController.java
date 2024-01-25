@@ -27,7 +27,6 @@ public class CategoryController implements IAppFactory {
         return Math.abs(uuid.hashCode());
     }
 
-
     @Override
     public void create() {
        Category category =  categoryView.createCategory();
@@ -36,7 +35,8 @@ public class CategoryController implements IAppFactory {
 
     @Override
     public void update(int id) {
-
+        Category category = this.categoryView.renderAndUpdateCategory();
+        this.dataService.updateCategoryById(category);
     }
 
     @Override

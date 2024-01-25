@@ -76,8 +76,8 @@ public class TransactionView {
 
             isRecurring = recurringStatus.equalsIgnoreCase("y");
 
-            Category category = categories.get(categoryId);
-            return new Transaction(amount, note, isRecurring, category, type);
+            Category category = dataService.getCategoryById(categoryId);
+            return new Transaction(categoryId, amount, note, isRecurring, category, type);
         } else {
             return null;
         }

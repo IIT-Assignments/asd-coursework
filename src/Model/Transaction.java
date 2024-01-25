@@ -11,6 +11,15 @@ public class Transaction {
     public Transaction() {
     }
 
+    public Transaction(int id, Double amount, String note, Boolean isRecurring, Category category, String type ){
+        this.amount = amount;
+        this.note = note;
+        this.isRecurring = isRecurring;
+        this.category = category;
+        this.type = type;
+        this.id = id;
+    }
+
     public Transaction(Double amount, String note, Boolean isRecurring, Category category, String type ){
         this.amount = amount;
         this.note = note;

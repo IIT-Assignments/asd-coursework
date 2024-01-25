@@ -37,13 +37,12 @@ public class BudgetController implements IAppFactory {
     }
 
     @Override
-    public Object getById(int id) {
-        return null;
+    public Budget getById(int id) {
+        return this.dataService.getBudgetById(id);
     }
-
     @Override
-    public Object[] getAll() {
-        return new Object[0];
+    public void getAll() {
+
     }
 
     @Override
@@ -51,5 +50,9 @@ public class BudgetController implements IAppFactory {
         int id = budgetView.renderAndDeleteBudget();
 
         this.dataService.deleteBudget(id);
+    }
+
+    public void renderBudgetById(int id){
+        budgetView.renderBudgetById(this.dataService.getBudgetById(id));
     }
 }
