@@ -42,7 +42,7 @@ public class BudgetController implements IAppFactory {
     }
     @Override
     public void getAll() {
-
+        budgetView.renderBudgetById(dataService);
     }
 
     @Override
@@ -50,9 +50,5 @@ public class BudgetController implements IAppFactory {
         int id = budgetView.renderAndDeleteBudget();
 
         this.dataService.deleteBudget(id);
-    }
-
-    public void renderBudgetById(int id){
-        budgetView.renderBudgetById(this.dataService.getBudgetById(id));
     }
 }

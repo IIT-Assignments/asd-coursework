@@ -1,1 +1,1 @@
-[{"id":1,"amount":300.0,"note":"This is test note","isRecurring":true,"category":{"id":1,"name":"Fuel"},"type":"in"}]
+[{"id":1,"amount":5000.0,"note":"test","isRecurring":false,"category":{"id":1,"name":"Fuel"},"type":"in"}]

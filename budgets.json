@@ -1,1 +1,1 @@
-[]
+[{"id":1,"name":"jan","budgetItems":[{"id":1,"amount":4500.0,"category":{"id":2,"name":"Food"}},{"id":2,"amount":4300.0,"category":{"id":3,"name":"Note"}}]}]

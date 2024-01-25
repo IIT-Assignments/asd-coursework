@@ -4,13 +4,13 @@ import Model.Budget;
 import Model.BudgetItem;
 import Model.Category;
 import Model.Transaction;
+import Service.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BudgetView {
-
 
     public  BudgetView() {}
     private final Scanner scanner = new Scanner(System.in);
@@ -29,6 +29,7 @@ public class BudgetView {
         name = scanner.nextLine();
 ;
         String isProceed = "yes";
+        int budgetItemId = 0;
         while (isProceed.equals("yes")){
 
             System.out.println("Enter category id: ");
@@ -41,6 +42,8 @@ public class BudgetView {
 
             Category category = categories.get(categoryId);
             BudgetItem budgetItem = new BudgetItem(amount,category);
+            budgetItemId = budgetItemId + 1;
+            budgetItem.setId(budgetItemId);
             budgetItems.add(budgetItem);
 
 
@@ -68,7 +71,13 @@ public class BudgetView {
         return budgetId;
     }
 
-    public void renderBudgetById(Budget budget) {
+    public void renderBudgetById(DataService dataService) {
+
+        System.out.print("Enter Budget Id : ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Budget budget =  dataService.getBudgetById(id);
+
         System.out.println("\nBudget for " + budget.getName() + "\n");
         // Print the table header
         System.out.println("+-------------------------+-------------------------------+-----------------------------+");
